@@ -20,9 +20,11 @@ search: true
 ---
 
 
-<aside class="warning">WORK IN PROGRESS AND NOT COMPLETE</aside>
+
 
 # Introduction
+
+<aside class="warning">WORK IN PROGRESS AND NOT COMPLETE</aside>
 
 [Mobilise Project](http://www.mobilise-project.org.uk/), funded by the Global Challenges Research Fund (GCRF) in UK, is developing a digital infrastructure that can offer intelligence to a range of agencies to work together to reduce the impact of natural disasters on communities.
 
