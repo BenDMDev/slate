@@ -226,10 +226,16 @@
             <a href="#installation" class="toc-h1 toc-link" data-title="Installation">Installation</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#requirements" class="toc-h2 toc-link" data-title="Requirements">Requirements</a>
+                  </li>
+                  <li>
                     <a href="#linux" class="toc-h2 toc-link" data-title="Linux">Linux</a>
                   </li>
                   <li>
                     <a href="#windows" class="toc-h2 toc-link" data-title="Windows">Windows</a>
+                  </li>
+                  <li>
+                    <a href="#starting-backend-service" class="toc-h2 toc-link" data-title="Starting Backend Service">Starting Backend Service</a>
                   </li>
               </ul>
           </li>
@@ -290,10 +296,52 @@
 <aside class="warning">WORK IN PROGRESS AND NOT COMPLETE</aside>
 
 <p><a href="http://www.mobilise-project.org.uk/">Mobilise Project</a>, funded by the Global Challenges Research Fund (GCRF) in UK, is developing a digital infrastructure that can offer intelligence to a range of agencies to work together to reduce the impact of natural disasters on communities.</p>
-<h1 id='installation'>Installation</h1><h2 id='linux'>Linux</h2>
-<p>TODO</p>
-<h2 id='windows'>Windows</h2>
-<p>TODO</p>
+<h1 id='installation'>Installation</h1><h2 id='requirements'>Requirements</h2>
+<ul>
+<li>MongoDB v4 </li>
+<li>NodeJS</li>
+</ul>
+<h2 id='linux'>Linux</h2><h3 id='installing-node-and-npm'>Installing Node and NPM</h3>
+<ul>
+<li>Either download the installer directly from the <a href="https://nodejs.org/en/">NodeJS</a> Site Or...</li>
+<li><a href="https://nodejs.org/en/download/package-manager/">Install</a> via your preferred package manager (depending on the linux distro you&#39;re using)</li>
+</ul>
+
+<aside class="notice">The package manger npm is included by default with NodeJS</aside>
+<h3 id='installing-mongodb'>Installing MongoDB</h3>
+<p>This project uses the NoSQL database MongoDB. This needs to be <a href="https://docs.mongodb.com/manual/installation/">installed</a> and then ran before the node server can be started (running without MongoDB will just result in a error). </p>
+
+<p>MongoDB doesn&#39;t start initially on Linux (unless ran as a service). To start the MongoDB service running manually, use the following command.</p>
+
+<p><code>service mongod start</code> </p>
+
+<aside class="notice">You may need to run this using sudo</aside>
+<h2 id='windows'>Windows</h2><h3 id='installing-node-and-npm-2'>Installing Node and NPM</h3>
+<ul>
+<li>Download the installer directly from the <a href="https://nodejs.org/en/">NodeJS</a>.</li>
+</ul>
+
+<aside class="notice">The package manger npm is included by default with NodeJS</aside>
+<h3 id='installing-mongodb-2'>Installing MongoDB</h3>
+<p>This project uses the NoSQL database MongoDB. This needs to be <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/">installed</a> and then ran before the node server can be started (running without MongoDB will just result in a error). </p>
+
+<p>Assuming everything has gone correctly with the install wizard, the MongoDB service should start automatically on boot up.</p>
+<h2 id='starting-backend-service'>Starting Backend Service</h2>
+<aside class="notice"> The following instructions apply to both Windows and Linux</aside>
+
+<p>Before running the backend service you will need to download the various dependencies used within the project. To this, open a terminal and change to the same directory where <strong>package.json</strong> is stored, run the following command.</p>
+
+<p><code>npm install</code></p>
+
+<p>This will install the various node dependencies for the project to run. You should now see a folder called node-modules within the project directory.</p>
+
+<p>To start the node server running type the following command:</p>
+
+<p><code>npm run dev</code> OR <code>npm run start</code> </p>
+
+<aside class="notice"> dev uses the development configuration and start uses the production configuration</aside>
+
+<p>By Default the server runs on localhost (127.0.0.1). </p>
 <h1 id='authentication'>Authentication</h1>
 <p>TODO</p>
 <h1 id='categories'>Categories</h1><h2 id='get-all-categories'>Get All Categories</h2>
