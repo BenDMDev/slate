@@ -279,6 +279,32 @@
           </li>
           <li>
             <a href="#layers" class="toc-h1 toc-link" data-title="Layers">Layers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-layers" class="toc-h2 toc-link" data-title="Get All Layers">Get All Layers</a>
+                  </li>
+                  <li>
+                    <a href="#create-layer" class="toc-h2 toc-link" data-title="Create Layer">Create Layer</a>
+                  </li>
+                  <li>
+                    <a href="#get-layer-by-id" class="toc-h2 toc-link" data-title="Get Layer by ID">Get Layer by ID</a>
+                  </li>
+                  <li>
+                    <a href="#get-layer-by-category-id" class="toc-h2 toc-link" data-title="Get Layer by Category ID">Get Layer by Category ID</a>
+                  </li>
+                  <li>
+                    <a href="#move-layer-to-new-category" class="toc-h2 toc-link" data-title="Move Layer to new Category">Move Layer to new Category</a>
+                  </li>
+                  <li>
+                    <a href="#check-owner" class="toc-h2 toc-link" data-title="Check Owner">Check Owner</a>
+                  </li>
+                  <li>
+                    <a href="#get-layer-info" class="toc-h2 toc-link" data-title="Get Layer Info">Get Layer Info</a>
+                  </li>
+                  <li>
+                    <a href="#delete-layer" class="toc-h2 toc-link" data-title="Delete Layer">Delete Layer</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
@@ -589,7 +615,81 @@
 <td>The ID of the Category to delete</td>
 </tr>
 </tbody></table>
-<h1 id='layers'>Layers</h1><h1 id='errors'>Errors</h1>
+<h1 id='layers'>Layers</h1><h2 id='get-all-layers'>Get All Layers</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /api/v1/layers/all</code></p>
+<h2 id='create-layer'>Create Layer</h2><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /api/v1/layers</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>categoryId</td>
+<td>true</td>
+<td>ID for Parent Category</td>
+</tr>
+<tr>
+<td>sharePolicy</td>
+<td>true</td>
+<td>Share Polic - Options: Public, Private</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>true</td>
+<td>Icon</td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>Layer Type</td>
+</tr>
+<tr>
+<td>clusterTextColor</td>
+<td>true</td>
+<td>Cluster Text Colour</td>
+</tr>
+<tr>
+<td>customData</td>
+<td>true</td>
+<td>Custom Data</td>
+</tr>
+<tr>
+<td>description</td>
+<td>true</td>
+<td>Description</td>
+</tr>
+</tbody></table>
+<h2 id='get-layer-by-id'>Get Layer by ID</h2><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /api/v1/layers/{layer-id}</code></p>
+<h2 id='get-layer-by-category-id'>Get Layer by Category ID</h2><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /api/v1/layers{?category-id}</code></p>
+<h2 id='move-layer-to-new-category'>Move Layer to new Category</h2><h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST /api/v1/layers/{layer-id}</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>categoryId</td>
+<td>true</td>
+<td>New Category ID</td>
+</tr>
+</tbody></table>
+<h2 id='check-owner'>Check Owner</h2><h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET /api/v1/layers/{layer-id}/user</code></p>
+<h2 id='get-layer-info'>Get Layer Info</h2><h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET /api/v1/layers/{layer-id}/info</code></p>
+<h2 id='delete-layer'>Delete Layer</h2><h3 id='http-request-8'>HTTP Request</h3>
+<p><code>DELETE /api/v1/layers/{layer-id}</code></p>
+<h1 id='errors'>Errors</h1>
 <p>The Mobilise API uses the following error codes:</p>
 
 <table><thead>
