@@ -1,12 +1,41 @@
 # Layers
 
+## Get Layers 
+
+Returns all public Layers and Private layers created by the current authenticated user
+
+### HTTP Request
+
+`GET /api/v1/layers`
+
 ## Get All Layers
+
+Returns all layers (Admin Use Only)
 
 ### HTTP Request
 
 `GET /api/v1/layers/all`
 
+## Get Layer by ID
+
+Returns a Layer based on the specified ID
+
+### HTTP Request
+
+`GET /api/v1/layers/{layer-id}`
+
+## Get Layer by Category ID
+
+Returns an array of layers with the specified Category ID
+
+### HTTP Request
+
+`GET /api/v1/layers/category/{category-id}`
+
+
 ## Create Layer
+
+Create a new Layer 
 
 ### HTTP Request
 
@@ -25,25 +54,13 @@ customData | true | Custom Data
 description | true | Description
 
 
+## Update Layer 
 
-## Get Layer by ID
-
-### HTTP Request
-
-`GET /api/v1/layers/{layer-id}`
-
-## Get Layer by Category ID
+Update layer 
 
 ### HTTP Request
 
-`GET /api/v1/layers{?category-id}`
-
-
-## Move Layer to new Category
-
-### HTTP Request
-
-`POST /api/v1/layers/{layer-id}`
+`PATCH /api/v1/layers/{layer-id}`
 
 ### Query Parameters
 
@@ -54,11 +71,15 @@ categoryId | true | New Category ID
 
 ## Check Owner
 
+Check if layer is owned by the current authenticated user
+
 ### HTTP Request
 
 `GET /api/v1/layers/{layer-id}/user`
 
 ## Get Layer Info
+
+Return info about the specified layer ID
 
 ### HTTP Request
 
@@ -66,6 +87,8 @@ categoryId | true | New Category ID
 
 
 ## Delete Layer
+
+Deletes layer matching the specified layer ID
 
 ### HTTP Request
 
