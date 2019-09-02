@@ -281,10 +281,10 @@
             <a href="#layers" class="toc-h1 toc-link" data-title="Layers">Layers</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-layers" class="toc-h2 toc-link" data-title="Get All Layers">Get All Layers</a>
+                    <a href="#get-layers" class="toc-h2 toc-link" data-title="Get Layers">Get Layers</a>
                   </li>
                   <li>
-                    <a href="#create-layer" class="toc-h2 toc-link" data-title="Create Layer">Create Layer</a>
+                    <a href="#get-all-layers" class="toc-h2 toc-link" data-title="Get All Layers">Get All Layers</a>
                   </li>
                   <li>
                     <a href="#get-layer-by-id" class="toc-h2 toc-link" data-title="Get Layer by ID">Get Layer by ID</a>
@@ -293,7 +293,10 @@
                     <a href="#get-layer-by-category-id" class="toc-h2 toc-link" data-title="Get Layer by Category ID">Get Layer by Category ID</a>
                   </li>
                   <li>
-                    <a href="#move-layer-to-new-category" class="toc-h2 toc-link" data-title="Move Layer to new Category">Move Layer to new Category</a>
+                    <a href="#create-layer" class="toc-h2 toc-link" data-title="Create Layer">Create Layer</a>
+                  </li>
+                  <li>
+                    <a href="#update-layer" class="toc-h2 toc-link" data-title="Update Layer">Update Layer</a>
                   </li>
                   <li>
                     <a href="#check-owner" class="toc-h2 toc-link" data-title="Check Owner">Check Owner</a>
@@ -615,9 +618,25 @@
 <td>The ID of the Category to delete</td>
 </tr>
 </tbody></table>
-<h1 id='layers'>Layers</h1><h2 id='get-all-layers'>Get All Layers</h2><h3 id='http-request'>HTTP Request</h3>
+<h1 id='layers'>Layers</h1><h2 id='get-layers'>Get Layers</h2>
+<p>Returns all public Layers and Private layers created by the current authenticated user</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /api/v1/layers</code></p>
+<h2 id='get-all-layers'>Get All Layers</h2>
+<p>Returns all layers (Admin Use Only)</p>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/v1/layers/all</code></p>
-<h2 id='create-layer'>Create Layer</h2><h3 id='http-request-2'>HTTP Request</h3>
+<h2 id='get-layer-by-id'>Get Layer by ID</h2>
+<p>Returns a Layer based on the specified ID</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /api/v1/layers/{layer-id}</code></p>
+<h2 id='get-layer-by-category-id'>Get Layer by Category ID</h2>
+<p>Returns an array of layers with the specified Category ID</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /api/v1/layers/category/{category-id}</code></p>
+<h2 id='create-layer'>Create Layer</h2>
+<p>Create a new Layer </p>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /api/v1/layers</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -663,12 +682,10 @@
 <td>Description</td>
 </tr>
 </tbody></table>
-<h2 id='get-layer-by-id'>Get Layer by ID</h2><h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET /api/v1/layers/{layer-id}</code></p>
-<h2 id='get-layer-by-category-id'>Get Layer by Category ID</h2><h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET /api/v1/layers{?category-id}</code></p>
-<h2 id='move-layer-to-new-category'>Move Layer to new Category</h2><h3 id='http-request-5'>HTTP Request</h3>
-<p><code>POST /api/v1/layers/{layer-id}</code></p>
+<h2 id='update-layer'>Update Layer</h2>
+<p>Update layer </p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>PATCH /api/v1/layers/{layer-id}</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -683,11 +700,17 @@
 <td>New Category ID</td>
 </tr>
 </tbody></table>
-<h2 id='check-owner'>Check Owner</h2><h3 id='http-request-6'>HTTP Request</h3>
+<h2 id='check-owner'>Check Owner</h2>
+<p>Check if layer is owned by the current authenticated user</p>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /api/v1/layers/{layer-id}/user</code></p>
-<h2 id='get-layer-info'>Get Layer Info</h2><h3 id='http-request-7'>HTTP Request</h3>
+<h2 id='get-layer-info'>Get Layer Info</h2>
+<p>Return info about the specified layer ID</p>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /api/v1/layers/{layer-id}/info</code></p>
-<h2 id='delete-layer'>Delete Layer</h2><h3 id='http-request-8'>HTTP Request</h3>
+<h2 id='delete-layer'>Delete Layer</h2>
+<p>Deletes layer matching the specified layer ID</p>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>DELETE /api/v1/layers/{layer-id}</code></p>
 <h1 id='errors'>Errors</h1>
 <p>The Mobilise API uses the following error codes:</p>
