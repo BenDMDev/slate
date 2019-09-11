@@ -246,10 +246,10 @@
             <a href="#categories" class="toc-h1 toc-link" data-title="Categories">Categories</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-categories" class="toc-h2 toc-link" data-title="Get All Categories">Get All Categories</a>
+                    <a href="#intro" class="toc-h2 toc-link" data-title="Intro">Intro</a>
                   </li>
                   <li>
-                    <a href="#create-new-category" class="toc-h2 toc-link" data-title="Create New Category">Create New Category</a>
+                    <a href="#get-all-categories" class="toc-h2 toc-link" data-title="Get All Categories">Get All Categories</a>
                   </li>
                   <li>
                     <a href="#get-top-category" class="toc-h2 toc-link" data-title="Get Top Category">Get Top Category</a>
@@ -264,16 +264,19 @@
                     <a href="#get-category-ancestor-details" class="toc-h2 toc-link" data-title="Get Category Ancestor Details">Get Category Ancestor Details</a>
                   </li>
                   <li>
-                    <a href="#get-category-ancestor-details-2" class="toc-h2 toc-link" data-title="Get Category Ancestor Details">Get Category Ancestor Details</a>
-                  </li>
-                  <li>
                     <a href="#get-category-layer-ids" class="toc-h2 toc-link" data-title="Get Category Layer IDs">Get Category Layer IDs</a>
                   </li>
                   <li>
                     <a href="#get-sub-categories" class="toc-h2 toc-link" data-title="Get Sub Categories">Get Sub Categories</a>
                   </li>
                   <li>
+                    <a href="#create-new-category" class="toc-h2 toc-link" data-title="Create New Category">Create New Category</a>
+                  </li>
+                  <li>
                     <a href="#delete-a-specific-category" class="toc-h2 toc-link" data-title="Delete a Specific Category">Delete a Specific Category</a>
+                  </li>
+                  <li>
+                    <a href="#delete-all-empty-categories" class="toc-h2 toc-link" data-title="Delete all Empty Categories">Delete all Empty Categories</a>
                   </li>
               </ul>
           </li>
@@ -376,18 +379,152 @@
 <p>By Default the server runs on localhost (127.0.0.1). </p>
 <h1 id='authentication'>Authentication</h1>
 <p>TODO</p>
-<h1 id='categories'>Categories</h1><h2 id='get-all-categories'>Get All Categories</h2>
+<h1 id='categories'>Categories</h1><h2 id='intro'>Intro</h2>
+<p>Categories are way of organising data for importing and storing on the server. Catagories can have either children themselves categories in a similar sense to a typical folder structure i.e a folder can contain a another folder, which itself could contain another folder. Categories can be made public or private, allowing them to be available to all users or just the user that created them.</p>
+<h2 id='get-all-categories'>Get All Categories</h2><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/all'</span>
+</code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example JSON response</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"shp"</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bb8c73b3445365debe32951"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#468847"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:26:01.181Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children_layer_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c4b4779d7f45e23255caf13"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"children_category_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all Categories.</p>
-
-<p>TO REPLACE: /getCategories</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /api/v1/categories/all</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><code>GET /api/v1/categories/all</code></p>
+<h2 id='get-top-category'>Get Top Category</h2><pre class="highlight shell tab-shell"><code>
+curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/tops'</span>
+
+</code></pre>
+<blockquote>
+<p>Example JSON Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bb8c73b3445365debe32951"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#468847"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:26:01.181Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children_layer_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c4b4779d7f45e23255caf13"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"children_category_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the Top Category</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /api/v1/categories/tops</code></p>
+<h2 id='get-a-specific-category'>Get a Specific Category</h2>
+<p>This endpoint retrieves a specific Category.</p>
+<h3 id='http-request-3'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/5c4b46a9d7f45e23255caf12'</span>
+
+</code></pre>
+<blockquote>
+<p>Example JSON response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bb8c73b3445365debe32951"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#468847"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:26:01.181Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children_layer_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c4b4779d7f45e23255caf13"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"children_category_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p><code>GET /api/v1/categories/{category_id}</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category_id</td>
+<td>The ID of the Category to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-category-by-share-policy'>Get a Category by Share Policy</h2><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/workspace/Public'</span>
+</code></pre>
+<blockquote>
+<p>Example JSON Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bb8c73b3445365debe32951"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#468847"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:26:01.181Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children_layer_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c4b4779d7f45e23255caf13"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"children_category_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all categories with the specified share policy</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /api/v1/categories/workspace/{share_policy}</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Options</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>share_policy</td>
+<td>True</td>
+<td>Public, Private</td>
+<td>The Share Policy of the categories to retrieve</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Private will return all categories with a private share policy created by the current authenticated user</aside>
+<h2 id='get-category-ancestor-details'>Get Category Ancestor Details</h2><pre class="highlight shell tab-shell"><code>
+curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/ancestors/5c4b46a9d7f45e23255caf12'</span>
+
+</code></pre><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ancestors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET /api/v1/categories/ancestors/{category_id}</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -396,14 +533,74 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>admin</td>
+<td>category_id</td>
 <td>true</td>
-<td>Admin username</td>
+<td>Category ID to retrieve Ancestor IDs for</td>
 </tr>
+</tbody></table>
+<h2 id='get-category-layer-ids'>Get Category Layer IDs</h2><h3 id='http-request-6'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/5c4b46a9d7f45e23255caf12/layers'</span>
+
+</code></pre>
+<blockquote>
+<p>Example JSON response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"layers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c4b4779d7f45e23255caf13"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p><code>GET /api/v1/categories/{category_id}/layers</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
 <tr>
-<td>adminPassword</td>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category_id</td>
 <td>true</td>
-<td>Admin password</td>
+<td>Category ID to retrieve Layer IDs for</td>
+</tr>
+</tbody></table>
+<h2 id='get-sub-categories'>Get Sub Categories</h2><h3 id='http-request-7'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/5c4b46a9d7f45e23255caf12/sub-categories'</span>
+</code></pre>
+<blockquote>
+<p>Example JSON response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subCategories"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d7900cf08b4be5bf22b4e15"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bb8c73b3445365debe32951"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#468847"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:26:01.181Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"children_layer_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"children_category_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p><code>GET /api/v1/categories/{category_id}/sub-categories</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category_id</td>
+<td>true</td>
+<td>Category ID to retrieve Sub Categories for</td>
 </tr>
 </tbody></table>
 <h2 id='create-new-category'>Create New Category</h2><pre class="highlight shell tab-shell"><code>curl -X POST
@@ -435,11 +632,9 @@
 
 </span></code></pre>
 <p>This endpoint allows the creation of a new category.</p>
-
-<p>TO REPLACE /create</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /api/v1/categories</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -465,149 +660,21 @@
 <tr>
 <td>colour</td>
 <td>true</td>
-<td>Colour</td>
-</tr>
-</tbody></table>
-<h2 id='get-top-category'>Get Top Category</h2>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bb8c73b3445365debe32951"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"colour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#468847"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:26:01.181Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"children_layer_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5c4b4779d7f45e23255caf13"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"children_category_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="s2">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves the Top Category</p>
-
-<p>TO REPLACE: /getTopCategory</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET /api/v1/categories/top</code></p>
-<h2 id='get-a-specific-category'>Get a Specific Category</h2>
-<p>This endpoint retrieves a specific Category.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET /api/v1/categories/{category_id}</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>category_id</td>
-<td>The ID of the Category to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='get-a-category-by-share-policy'>Get a Category by Share Policy</h2>
-<p>This endpoint retrieves all categories with the specified share policy</p>
-
-<p>TO REPLACE: /getAllPublicCategoies, /getUserPrivateCategories</p>
-<h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET /api/v1/categories{?share_policy}</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>share_policy</td>
-<td>True</td>
-<td>Public, Private</td>
-<td>The Share Policy of the categories to retrieve</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">Private will return all categories with a private share policy created by the current authenticated user</aside>
-<h2 id='get-category-ancestor-details'>Get Category Ancestor Details</h2><h3 id='http-request-6'>HTTP Request</h3>
-<p><code>POST /api/v1/categories/ancestor</code></p>
-
-<p>TO REPLACE: /getCategoryAncestorDetails</p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>category_Ids</td>
-<td>true</td>
-<td>List of Category IDs to retrieve Ancestor details for</td>
-</tr>
-</tbody></table>
-<h2 id='get-category-ancestor-details-2'>Get Category Ancestor Details</h2><h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET /api/v1/categories/{category_id}/ancestors</code></p>
-
-<p>TO REPLACE: /getCategoryAncestorIDs</p>
-<h3 id='url-parameters-3'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>category_id</td>
-<td>true</td>
-<td>Category ID to retrieve Ancestor IDs for</td>
-</tr>
-</tbody></table>
-<h2 id='get-category-layer-ids'>Get Category Layer IDs</h2><h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET /api/v1/categories/{category_id}/layers</code></p>
-
-<p>TO REPLACE: /getCategoryLayersID</p>
-<h3 id='url-parameters-4'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>category_id</td>
-<td>true</td>
-<td>Category ID to retrieve Layer IDs for</td>
-</tr>
-</tbody></table>
-<h2 id='get-sub-categories'>Get Sub Categories</h2><h3 id='http-request-9'>HTTP Request</h3>
-<p><code>GET /api/v1/categories/{category_id}/sub-categories</code></p>
-
-<p>TO REPLACE: /getSubCategories</p>
-<h3 id='url-parameters-5'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>category_id</td>
-<td>true</td>
-<td>Category ID to retrieve Sub Categories for</td>
+<td>Colour as a hash Code</td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-specific-category'>Delete a Specific Category</h2>
-<p>This endpoint deletes a specific Category.</p>
-
-<p>TO REPLACE /remove</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<p>This endpoint deletes a specific Category (only if current authenticated user is the creator)</p>
+<h3 id='http-request-9'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X DELETE -i <span class="s1">'http://127.0.0.1/api/v1/categories/5d79020c08b4be5bf22b4e8a'</span>
+</code></pre>
+<blockquote>
+<p>Example JSON response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d79020c08b4be5bf22b4e8a"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><code>DELETE /api/v1/categories/{category_id}</code></p>
 <h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
@@ -621,14 +688,26 @@
 <td>The ID of the Category to delete</td>
 </tr>
 </tbody></table>
+<h2 id='delete-all-empty-categories'>Delete all Empty Categories</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE -i <span class="s1">'http://127.0.0.1/api/v1/categories/empty'</span>
+</code></pre>
+<blockquote>
+<p>Example JSON Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"removed_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"5d7900cf08b4be5bf22b4e15"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This endpoint deletes empty Categories (those without any sub-categories or layers)</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>DELETE /api/v1/categories/empty</code></p>
 <h1 id='layers'>Layers</h1><h2 id='intro'>Intro</h2>
 <p>Layers represent some data imported by the user - such as a CSV, SHP or GeoJSON. They&#39;re a child node to a Category in a similar sense to tree like file structure - i.e Layers are the files, Categories are the folders.
 Layers can be made public or private, allowing them to be available to all users or just the user that created them.  </p>
 <h2 id='get-layers'>Get Layers</h2>
 <p>Returns all public Layers and Private layers created by the current authenticated user</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /api/v1/layers</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X GET 
+<h3 id='http-request'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X GET 
 -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
 -i <span class="s1">'http://127.0.0.1/api/v1/layers'</span>
 </code></pre>
@@ -652,11 +731,11 @@ Layers can be made public or private, allowing them to be available to all users
   </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:29:29.831Z"</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 
-</span></code></pre><h2 id='get-all-layers'>Get All Layers</h2>
+</span></code></pre>
+<p><code>GET /api/v1/layers</code></p>
+<h2 id='get-all-layers'>Get All Layers</h2>
 <p>Returns all layers (Admin Use Only)</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET /api/v1/layers/all</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X GET 
+<h3 id='http-request-2'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X GET 
 -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
 -i <span class="s1">'http://127.0.0.1/api/v1/layers/all'</span>
 </code></pre>
@@ -679,11 +758,11 @@ Layers can be made public or private, allowing them to be available to all users
   </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:29:29.831Z"</span><span class="w">
 </span><span class="p">}]</span><span class="w">
-</span></code></pre><h2 id='get-layer-by-id'>Get Layer by ID</h2>
+</span></code></pre>
+<p><code>GET /api/v1/layers/all</code></p>
+<h2 id='get-layer-by-id'>Get Layer by ID</h2>
 <p>Returns a Layer based on the specified ID</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET /api/v1/layers/{layer-id}</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X GET 
+<h3 id='http-request-3'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X GET 
 -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
 -i <span class="s1">'http://127.0.0.1/api/v1/layers/5c4b4779d7f45e23255caf13'</span>
 
@@ -712,11 +791,11 @@ Layers can be made public or private, allowing them to be available to all users
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='get-layer-by-category-id'>Get Layer by Category ID</h2>
+</span></code></pre>
+<p><code>GET /api/v1/layers/{layer-id}</code></p>
+<h2 id='get-layer-by-category-id'>Get Layer by Category ID</h2>
 <p>Returns an array of layers with the specified Category ID</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET /api/v1/layers/category/{category-id}</code></p>
-<pre class="highlight shell tab-shell"><code>
+<h3 id='http-request-4'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>
 curl -X GET 
 -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
 -i <span class="s1">'http://127.0.0.1/api/v1/layers/category/5c4b46a9d7f45e23255caf12'</span>
@@ -743,11 +822,11 @@ curl -X GET
   </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='create-layer'>Create Layer</h2>
-<p>Create a new Layer </p>
-<h3 id='http-request-5'>HTTP Request</h3>
-<p><code>POST /api/v1/layers</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST 
+</span></code></pre>
+<p><code>GET /api/v1/layers/category/{category-id}</code></p>
+<h2 id='create-layer'>Create Layer</h2>
+<p>Creates a new Layer </p>
+<h3 id='http-request-5'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X POST 
 -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
 -i <span class="s1">'http://127.0.0.1/api/v1/layers/'</span> 
 --data <span class="s1">'categoryId=5c4b46a9d7f45e23255caf12&amp;title='</span><span class="se">\'</span><span class="s1">'test_layer&amp;sharePolicy=Public&amp;icon=icon&amp;type=csv&amp;clusterTextColor=#FF0000&amp;customData='</span><span class="se">\'</span><span class="s1">'custom data test'</span><span class="se">\'</span><span class="s1">'&amp;description='</span><span class="se">\'</span><span class="s1">'test layer desc'</span><span class="se">\'</span><span class="s1">'&amp;URL=test url'</span><span class="se">\'</span><span class="s1">'
@@ -777,7 +856,9 @@ curl -X GET
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='query-parameters'>Query Parameters</h3>
+</span></code></pre>
+<p><code>POST /api/v1/layers</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -822,10 +903,8 @@ curl -X GET
 </tr>
 </tbody></table>
 <h2 id='update-layer'>Update Layer</h2>
-<p>Update layer </p>
-<h3 id='http-request-6'>HTTP Request</h3>
-<p><code>PATCH /api/v1/layers/{layer-id}</code></p>
-<pre class="highlight shell tab-shell"><code>
+<p>Updates layer (currently only allows updating the category ID i.e equivalent of moving a file from one folder to another)</p>
+<h3 id='http-request-6'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>
 curl -X PATCH -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
 -i <span class="s1">'http://127.0.0.1/api/v1/layers/5d78ceda1478c60e261d197b'</span> 
 --data <span class="s1">'category_id=5d78ceb71478c60e261d197a
@@ -840,7 +919,9 @@ curl -X PATCH -H <span class="s1">'Content-Type: application/x-www-form-urlencod
  </span><span class="s2">"oriCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='query-parameters-2'>Query Parameters</h3>
+</span></code></pre>
+<p><code>PATCH /api/v1/layers/{layer-id}</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -856,9 +937,7 @@ curl -X PATCH -H <span class="s1">'Content-Type: application/x-www-form-urlencod
 </tbody></table>
 <h2 id='check-owner'>Check Owner</h2>
 <p>Check if layer is owned by the current authenticated user</p>
-<h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET /api/v1/layers/{layer-id}/user</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X 
+<h3 id='http-request-7'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X 
 GET -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
 -i <span class="s1">'http://127.0.0.1/api/v1/layers/5c4b4779d7f45e23255caf13/user'</span>
 
@@ -871,11 +950,11 @@ GET -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span>
   </span><span class="s2">"isOwner"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='get-layer-info'>Get Layer Info</h2>
+</span></code></pre>
+<p><code>GET /api/v1/layers/{layer-id}/user</code></p>
+<h2 id='get-layer-info'>Get Layer Info</h2>
 <p>Return info about the specified layer ID</p>
-<h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET /api/v1/layers/{layer-id}/info</code></p>
-<pre class="highlight shell tab-shell"><code>
+<h3 id='http-request-8'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>
 </code></pre>
 <blockquote>
 <p>Example JSON response</p>
@@ -894,11 +973,11 @@ GET -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='delete-layer'>Delete Layer</h2>
+</span></code></pre>
+<p><code>GET /api/v1/layers/{layer-id}/info</code></p>
+<h2 id='delete-layer'>Delete Layer</h2>
 <p>Deletes layer matching the specified layer ID</p>
-<h3 id='http-request-9'>HTTP Request</h3>
-<p><code>DELETE /api/v1/layers/{layer-id}</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X DELETE 
+<h3 id='http-request-9'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X DELETE 
 -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
 -i <span class="s1">'http://127.0.0.1/api/v1/layers/5d78cdea1478c60e261d1979'</span>
 
@@ -912,7 +991,9 @@ GET -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span>
   </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='errors'>Errors</h1>
+</span></code></pre>
+<p><code>DELETE /api/v1/layers/{layer-id}</code></p>
+<h1 id='errors'>Errors</h1>
 <p>The Mobilise API uses the following error codes:</p>
 
 <table><thead>
