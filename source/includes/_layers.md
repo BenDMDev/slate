@@ -11,7 +11,7 @@ Returns all public Layers and Private layers created by the current authenticate
 
 ### HTTP Request
 
-`GET /api/v1/layers`
+
 
 ```shell
 curl -X GET 
@@ -41,13 +41,15 @@ curl -X GET
 
 ```
 
+`GET /api/v1/layers`
+
 ## Get All Layers
 
 Returns all layers (Admin Use Only)
 
 ### HTTP Request
 
-`GET /api/v1/layers/all`
+
 
 ```shell
 curl -X GET 
@@ -75,6 +77,7 @@ curl -X GET
   "created": "2019-01-25T17:29:29.831Z"
 }]
 ```
+`GET /api/v1/layers/all`
 
 ## Get Layer by ID
 
@@ -82,7 +85,7 @@ Returns a Layer based on the specified ID
 
 ### HTTP Request
 
-`GET /api/v1/layers/{layer-id}`
+
 
 ```shell
 curl -X GET 
@@ -117,13 +120,15 @@ curl -X GET
 
 ```
 
+`GET /api/v1/layers/{layer-id}`
+
 ## Get Layer by Category ID
 
 Returns an array of layers with the specified Category ID
 
 ### HTTP Request
 
-`GET /api/v1/layers/category/{category-id}`
+
 
 ```shell
 
@@ -157,13 +162,15 @@ curl -X GET
 
 ```
 
+`GET /api/v1/layers/category/{category-id}`
+
 ## Create Layer
 
-Create a new Layer 
+Creates a new Layer 
 
 ### HTTP Request
 
-`POST /api/v1/layers`
+
 
 ```shell
 curl -X POST 
@@ -197,7 +204,7 @@ curl -X POST
 }
 
 ```
-
+`POST /api/v1/layers`
 
 ### Query Parameters
 
@@ -214,11 +221,11 @@ description | true | Description
 
 ## Update Layer 
 
-Update layer 
+Updates layer \(currently only allows updating the category ID i.e equivalent of moving a file from one folder to another\)
 
 ### HTTP Request
 
-`PATCH /api/v1/layers/{layer-id}`
+
 
 ```shell
 
@@ -237,6 +244,7 @@ curl -X PATCH -H 'Content-Type: application/x-www-form-urlencoded'
 }
 
 ```
+`PATCH /api/v1/layers/{layer-id}`
 
 ### Query Parameters
 
@@ -251,7 +259,7 @@ Check if layer is owned by the current authenticated user
 
 ### HTTP Request
 
-`GET /api/v1/layers/{layer-id}/user`
+
 
 ```shell
 curl -X 
@@ -269,6 +277,7 @@ GET -H 'Content-Type: application/x-www-form-urlencoded'
 
 ```
 
+`GET /api/v1/layers/{layer-id}/user`
 
 ## Get Layer Info
 
@@ -276,7 +285,7 @@ Return info about the specified layer ID
 
 ### HTTP Request
 
-`GET /api/v1/layers/{layer-id}/info`
+
 
 ```shell
 
@@ -299,6 +308,7 @@ Return info about the specified layer ID
 }
 
 ```
+`GET /api/v1/layers/{layer-id}/info`
 
 ## Delete Layer
 
@@ -306,7 +316,7 @@ Deletes layer matching the specified layer ID
 
 ### HTTP Request
 
-`DELETE /api/v1/layers/{layer-id}`
+
 
 ```shell
 curl -X DELETE 
@@ -325,4 +335,4 @@ curl -X DELETE
 }
 
 ```
-
+`DELETE /api/v1/layers/{layer-id}`
