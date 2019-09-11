@@ -281,6 +281,9 @@
             <a href="#layers" class="toc-h1 toc-link" data-title="Layers">Layers</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#intro" class="toc-h2 toc-link" data-title="Intro">Intro</a>
+                  </li>
+                  <li>
                     <a href="#get-layers" class="toc-h2 toc-link" data-title="Get Layers">Get Layers</a>
                   </li>
                   <li>
@@ -618,27 +621,163 @@
 <td>The ID of the Category to delete</td>
 </tr>
 </tbody></table>
-<h1 id='layers'>Layers</h1><h2 id='get-layers'>Get Layers</h2>
+<h1 id='layers'>Layers</h1><h2 id='intro'>Intro</h2>
+<p>Layers represent some data imported by the user - such as a CSV, SHP or GeoJSON. They&#39;re a child node to a Category in a similar sense to tree like file structure - i.e Layers are the files, Categories are the folders.
+Layers can be made public or private, allowing them to be available to all users or just the user that created them.  </p>
+<h2 id='get-layers'>Get Layers</h2>
 <p>Returns all public Layers and Private layers created by the current authenticated user</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /api/v1/layers</code></p>
-<h2 id='get-all-layers'>Get All Layers</h2>
+<pre class="highlight shell tab-shell"><code>curl -X GET 
+-H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
+-i <span class="s1">'http://127.0.0.1/api/v1/layers'</span>
+</code></pre>
+<blockquote>
+<p>Example JSON response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b4779d7f45e23255caf13"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"man_wards"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"img/shapeImages/5bb8c73b3445365debe329511548437369690.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GeoJSON"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clusterTextColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"CustomData"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data/layers/15484373698305bb8c73b3445365debe32951.GeoJSON"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bb8c73b3445365debe32951"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:29:29.831Z"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+
+</span></code></pre><h2 id='get-all-layers'>Get All Layers</h2>
 <p>Returns all layers (Admin Use Only)</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /api/v1/layers/all</code></p>
-<h2 id='get-layer-by-id'>Get Layer by ID</h2>
+<pre class="highlight shell tab-shell"><code>curl -X GET 
+-H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
+-i <span class="s1">'http://127.0.0.1/api/v1/layers/all'</span>
+</code></pre>
+<blockquote>
+<p>Example JSON response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b4779d7f45e23255caf13"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"man_wards"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"img/shapeImages/5bb8c73b3445365debe329511548437369690.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GeoJSON"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"clusterTextColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"CustomData"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data/layers/15484373698305bb8c73b3445365debe32951.GeoJSON"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bb8c73b3445365debe32951"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:29:29.831Z"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre><h2 id='get-layer-by-id'>Get Layer by ID</h2>
 <p>Returns a Layer based on the specified ID</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /api/v1/layers/{layer-id}</code></p>
-<h2 id='get-layer-by-category-id'>Get Layer by Category ID</h2>
+<pre class="highlight shell tab-shell"><code>curl -X GET 
+-H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
+-i <span class="s1">'http://127.0.0.1/api/v1/layers/5c4b4779d7f45e23255caf13'</span>
+
+</code></pre>
+<blockquote>
+<p>Example JSON response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"layer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b4779d7f45e23255caf13"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"man_wards"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"img/shapeImages/5bb8c73b3445365debe329511548437369690.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GeoJSON"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clusterTextColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CustomData"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data/layers/15484373698305bb8c73b3445365debe32951.GeoJSON"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bb8c73b3445365debe32951"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:29:29.831Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='get-layer-by-category-id'>Get Layer by Category ID</h2>
 <p>Returns an array of layers with the specified Category ID</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /api/v1/layers/category/{category-id}</code></p>
-<h2 id='create-layer'>Create Layer</h2>
+<pre class="highlight shell tab-shell"><code>
+curl -X GET 
+-H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
+-i <span class="s1">'http://127.0.0.1/api/v1/layers/category/5c4b46a9d7f45e23255caf12'</span>
+
+</code></pre>
+<p>5d78ceb71478c60e261d197a</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"resultLayers"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b4779d7f45e23255caf13"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"man_wards"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"img/shapeImages/5bb8c73b3445365debe329511548437369690.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GeoJSON"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clusterTextColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CustomData"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data/layers/15484373698305bb8c73b3445365debe32951.GeoJSON"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bb8c73b3445365debe32951"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:29:29.831Z"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='create-layer'>Create Layer</h2>
 <p>Create a new Layer </p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /api/v1/layers</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<pre class="highlight shell tab-shell"><code>curl -X POST 
+-H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
+-i <span class="s1">'http://127.0.0.1/api/v1/layers/'</span> 
+--data <span class="s1">'categoryId=5c4b46a9d7f45e23255caf12&amp;title='</span><span class="se">\'</span><span class="s1">'test_layer&amp;sharePolicy=Public&amp;icon=icon&amp;type=csv&amp;clusterTextColor=#FF0000&amp;customData='</span><span class="se">\'</span><span class="s1">'custom data test'</span><span class="se">\'</span><span class="s1">'&amp;description='</span><span class="se">\'</span><span class="s1">'test layer desc'</span><span class="se">\'</span><span class="s1">'&amp;URL=test url'</span><span class="se">\'</span><span class="s1">'
+
+</span></code></pre>
+<blockquote>
+<p>Example JSON Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"layer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"'test_layer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"icon"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"csv"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clusterTextColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#FF0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CustomData"</span><span class="p">:</span><span class="w"> </span><span class="s2">"'custom data test'"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"'test layer desc'"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data/layers/15681976766025bb9f7ccd4bdb80d9f68d11c.csv"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bb9f7ccd4bdb80d9f68d11c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d78cc2c1478c60e261d1978"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-11T10:27:56.605Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -669,7 +808,7 @@
 <tr>
 <td>clusterTextColor</td>
 <td>true</td>
-<td>Cluster Text Colour</td>
+<td>Cluster Text Colour (using # code)</td>
 </tr>
 <tr>
 <td>customData</td>
@@ -686,7 +825,22 @@
 <p>Update layer </p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>PATCH /api/v1/layers/{layer-id}</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<pre class="highlight shell tab-shell"><code>
+curl -X PATCH -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
+-i <span class="s1">'http://127.0.0.1/api/v1/layers/5d78ceda1478c60e261d197b'</span> 
+--data <span class="s1">'category_id=5d78ceb71478c60e261d197a
+
+</span></code></pre>
+<blockquote>
+<p>Exmaple JSON Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">    
+ </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"oriCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c4b46a9d7f45e23255caf12"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -704,15 +858,61 @@
 <p>Check if layer is owned by the current authenticated user</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /api/v1/layers/{layer-id}/user</code></p>
-<h2 id='get-layer-info'>Get Layer Info</h2>
+<pre class="highlight shell tab-shell"><code>curl -X 
+GET -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
+-i <span class="s1">'http://127.0.0.1/api/v1/layers/5c4b4779d7f45e23255caf13/user'</span>
+
+</code></pre>
+<blockquote>
+<p>Example JSON response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"isOwner"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='get-layer-info'>Get Layer Info</h2>
 <p>Return info about the specified layer ID</p>
 <h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /api/v1/layers/{layer-id}/info</code></p>
-<h2 id='delete-layer'>Delete Layer</h2>
+<pre class="highlight shell tab-shell"><code>
+</code></pre>
+<blockquote>
+<p>Example JSON response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"man_wards"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"SharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GeoJSON"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"img/shapeImages/5bb8c73b3445365debe329511548437369690.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Creator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kuo-Cheng Wu"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T17:29:29.831Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='delete-layer'>Delete Layer</h2>
 <p>Deletes layer matching the specified layer ID</p>
 <h3 id='http-request-9'>HTTP Request</h3>
 <p><code>DELETE /api/v1/layers/{layer-id}</code></p>
-<h1 id='errors'>Errors</h1>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE 
+-H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
+-i <span class="s1">'http://127.0.0.1/api/v1/layers/5d78cdea1478c60e261d1979'</span>
+
+</code></pre>
+<blockquote>
+<p>Exmaple JSON Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"'test_layer layer removed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sharePolicy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h1 id='errors'>Errors</h1>
 <p>The Mobilise API uses the following error codes:</p>
 
 <table><thead>
