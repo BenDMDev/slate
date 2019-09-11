@@ -316,6 +316,26 @@
               </ul>
           </li>
           <li>
+            <a href="#images" class="toc-h1 toc-link" data-title="Images">Images</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#intro" class="toc-h2 toc-link" data-title="Intro">Intro</a>
+                  </li>
+                  <li>
+                    <a href="#upload-image" class="toc-h2 toc-link" data-title="Upload Image">Upload Image</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-circle" class="toc-h2 toc-link" data-title="Create a Circle">Create a Circle</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-square" class="toc-h2 toc-link" data-title="Create a Square">Create a Square</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-line" class="toc-h2 toc-link" data-title="Create a Line">Create a Line</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -997,6 +1017,124 @@ GET -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span>
 
 </span></code></pre>
 <p><code>DELETE /api/v1/layers/{layer-id}</code></p>
+<h1 id='images'>Images</h1><h2 id='intro'>Intro</h2>
+<p>Images represent user uploaded icons (as well as default shapes/lines) to use with the file structure of Categories/Layers. A custom image can be uploaded to represent certain layers, or a shape can be generated and stored on the server. </p>
+<h2 id='upload-image'>Upload Image</h2><pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
+-i <span class="s1">'http://127.0.0.1/api/v1/images/'</span> 
+--data <span class="s1">'content='</span><span class="se">\'</span><span class="s1">'dummycontent'</span><span class="se">\'</span><span class="s1">'&amp;filename='</span><span class="se">\'</span><span class="s1">'testContent.png'</span><span class="se">\'</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/res/customIcons/'testContent.png'"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Uploads an image to be stored on the server. </p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /api/v1/images/</code> </p>
+<h2 id='create-a-circle'>Create a Circle</h2><pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
+-i <span class="s1">'http://127.0.0.1/api/v1/images/circle'</span>
+--data <span class="s1">'color=#FF0000&amp;filename=circle.png'</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/res/shapeImages/'circle.png'"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Create a circle with the specified color and save it to the server</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /api/v1/images/circle</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>color</td>
+<td>true</td>
+<td>Color as # Code</td>
+</tr>
+<tr>
+<td>filename</td>
+<td>true</td>
+<td>filename to save shape as</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-square'>Create a Square</h2><pre class="highlight shell tab-shell"><code>
+curl -X POST -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> 
+-i <span class="s1">'http://127.0.0.1/api/v1/images/square'</span> 
+--data <span class="s1">'color=#FF0000&amp;boundary=#FF0000&amp;filename=square.png'</span>
+
+</code></pre><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/res/shapeImages/square.png"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Create a square with the specified color and boundary and save to the server</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /api/v1/images/square</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>color</td>
+<td>true</td>
+<td>Color as # Code</td>
+</tr>
+<tr>
+<td>boundary</td>
+<td>true</td>
+<td>Color for boundary of square as # code</td>
+</tr>
+<tr>
+<td>filename</td>
+<td>true</td>
+<td>filename to save shape as</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-line'>Create a Line</h2><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/res/shapeImages/line.png"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre><h3 id='http-request-4'>HTTP Request</h3>
+<p>Create a line with the specified colour and width and save it to the server</p>
+
+<p><code>POST /api/v1/images/line</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>color</td>
+<td>true</td>
+<td>Color as # Code</td>
+</tr>
+<tr>
+<td>width</td>
+<td>true</td>
+<td>Color for boundary of square as # code</td>
+</tr>
+<tr>
+<td>filename</td>
+<td>true</td>
+<td>filename to save shape as</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <p>The Mobilise API uses the following error codes:</p>
 
