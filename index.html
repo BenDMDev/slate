@@ -380,7 +380,7 @@
 <h1 id='authentication'>Authentication</h1>
 <p>TODO</p>
 <h1 id='categories'>Categories</h1><h2 id='intro'>Intro</h2>
-<p>Categories are way of organising data for importing and storing on the server. Catagories can have either children themselves categories in a similar sense to a typical folder structure i.e a folder can contain a another folder, which itself could contain another folder. Categories can be made public or private, allowing them to be available to all users or just the user that created them.</p>
+<p>Categories are way of organising data for importing and storing on the server. Catagories can have either be empty, have only layers as children or have children that are themselves categories in a similar sense to a typical folder structure i.e a folder can contain a another folder, which itself could contain another folder. Categories can be made public or private, allowing them to be available to all users or just the user that created them.</p>
 <h2 id='get-all-categories'>Get All Categories</h2><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/all'</span>
 </code></pre>
 <blockquote>
@@ -538,7 +538,9 @@ curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/ancestors/5c
 <td>Category ID to retrieve Ancestor IDs for</td>
 </tr>
 </tbody></table>
-<h2 id='get-category-layer-ids'>Get Category Layer IDs</h2><h3 id='http-request-6'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/5c4b46a9d7f45e23255caf12/layers'</span>
+<h2 id='get-category-layer-ids'>Get Category Layer IDs</h2>
+<p>This endpoint returns a list of Layer IDs for the specified category</p>
+<h3 id='http-request-6'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/5c4b46a9d7f45e23255caf12/layers'</span>
 
 </code></pre>
 <blockquote>
@@ -565,7 +567,9 @@ curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/ancestors/5c
 <td>Category ID to retrieve Layer IDs for</td>
 </tr>
 </tbody></table>
-<h2 id='get-sub-categories'>Get Sub Categories</h2><h3 id='http-request-7'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/5c4b46a9d7f45e23255caf12/sub-categories'</span>
+<h2 id='get-sub-categories'>Get Sub Categories</h2>
+<p>This returns any sub categories to the specified category (i.e any sub folders)</p>
+<h3 id='http-request-7'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/5c4b46a9d7f45e23255caf12/sub-categories'</span>
 </code></pre>
 <blockquote>
 <p>Example JSON response</p>
@@ -631,7 +635,7 @@ curl -X GET -i <span class="s1">'http://127.0.0.1/api/v1/categories/ancestors/5c
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>This endpoint allows the creation of a new category.</p>
+<p>This endpoint creaties a new category.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /api/v1/categories</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
