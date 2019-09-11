@@ -3,7 +3,7 @@
 
 ## Intro
 
-Categories are way of organising data for importing and storing on the server. Catagories can have either children themselves categories in a similar sense to a typical folder structure i.e a folder can contain a another folder, which itself could contain another folder. Categories can be made public or private, allowing them to be available to all users or just the user that created them.
+Categories are way of organising data for importing and storing on the server. Catagories can have either be empty, have only layers as children or have children that are themselves categories in a similar sense to a typical folder structure i.e a folder can contain a another folder, which itself could contain another folder. Categories can be made public or private, allowing them to be available to all users or just the user that created them.
 
 ## Get All Categories
 
@@ -189,6 +189,8 @@ category_id | true | Category ID to retrieve Ancestor IDs for
 
 ## Get Category Layer IDs
 
+This endpoint returns a list of Layer IDs for the specified category
+
 ### HTTP Request
 
 ```shell
@@ -216,6 +218,8 @@ Parameter | Required | Description
 category_id | true | Category ID to retrieve Layer IDs for
 
 ## Get Sub Categories
+
+This returns any sub categories to the specified category \(i.e any sub folders\)
 
 ### HTTP Request
 
@@ -287,7 +291,7 @@ curl -X POST
 
 ```
 
-This endpoint allows the creation of a new category.
+This endpoint creaties a new category.
 
 
 ### HTTP Request
