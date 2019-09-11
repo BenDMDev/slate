@@ -14,6 +14,7 @@ includes:
   - authentication
   - categories
   - layers
+  - images
   - errors
 
 search: true
