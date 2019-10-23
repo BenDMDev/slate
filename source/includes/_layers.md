@@ -164,6 +164,13 @@ curl -X GET
 
 `GET /api/v1/layers/category/{category-id}`
 
+
+## Get Geoserver Layer
+
+`GET /geoserver/geojson/:layer_id`
+
+
+
 ## Create Layer
 
 Creates a new Layer 
