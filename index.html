@@ -299,6 +299,9 @@
                     <a href="#get-layer-by-category-id" class="toc-h2 toc-link" data-title="Get Layer by Category ID">Get Layer by Category ID</a>
                   </li>
                   <li>
+                    <a href="#get-geoserver-layer" class="toc-h2 toc-link" data-title="Get Geoserver Layer">Get Geoserver Layer</a>
+                  </li>
+                  <li>
                     <a href="#create-layer" class="toc-h2 toc-link" data-title="Create Layer">Create Layer</a>
                   </li>
                   <li>
@@ -848,6 +851,8 @@ curl -X GET
 
 </span></code></pre>
 <p><code>GET /api/v1/layers/category/{category-id}</code></p>
+<h2 id='get-geoserver-layer'>Get Geoserver Layer</h2>
+<p><code>GET /geoserver/geojson/:layer_id</code></p>
 <h2 id='create-layer'>Create Layer</h2>
 <p>Creates a new Layer </p>
 <h3 id='http-request-5'>HTTP Request</h3><pre class="highlight shell tab-shell"><code>curl -X POST 
