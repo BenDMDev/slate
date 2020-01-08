@@ -10,12 +10,10 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - installation
-  - authentication
-  - categories
-  - layers
-  - images
-  - errors
+  - buildings
+  - infrastructure
+  - demographics
+  - utilities
 
 search: true
 ---
